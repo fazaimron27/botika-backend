@@ -1,19 +1,24 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\{
+    AuthController,
+    DepartmentController,
+    JobController,
+    EmployeeController,
+    DashboardController
+};
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('auth', [AuthController::class, 'signin']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('departments', DepartmentController::class);
+    Route::resource('jobs', JobController::class);
+    Route::resource('employees', EmployeeController::class);
+
+    Route::get('dashboard/employee-count', [DashboardController::class, 'countEmployees']);
+    Route::get('dashboard/employee-status-count', [DashboardController::class, 'countEmployeesByStatus']);
+    Route::get('dashboard/employee-department-count', [DashboardController::class, 'countEmployeesByDepartment']);
+    Route::get('dashboard/employee-summary', [DashboardController::class, 'countEmployeesSummary']);
 });
