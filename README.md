@@ -22,3 +22,7 @@ Follow these steps to get started with this project:
 
 5. **Access the Application**
    - Open your web browser and go to `http://localhost:<your-port>` to view the application.
+
+## Default Account Credentials
+    - Email: admin@mail.com
+    - Password: password
