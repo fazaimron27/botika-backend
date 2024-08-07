@@ -17,6 +17,7 @@ class JobResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'department_id' => $this->department_id,
             'department' => $this->department ? $this->department->name : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
